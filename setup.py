@@ -5,6 +5,7 @@ import os
 import subprocess
 import sys
 import warnings
+from os import path
 
 try:
     import py2exe
@@ -14,7 +15,6 @@ except:
 
 from pysimplesoap import __version__, __author__, __author_email__, __license__
 
-# convert the README and format in restructured text (only when registering)
 long_desc = ""
 if os.path.exists("README.md") and sys.platform == "linux2":
     try:
@@ -25,13 +25,13 @@ if os.path.exists("README.md") and sys.platform == "linux2":
         warnings.warn("Exception when converting the README format: %s" % e)
 
 setup(
-    name='PySimpleSOAP',
+    name='pysoap',
     version=__version__,
     description='Python simple and lightweight SOAP Library',
     long_description=long_desc,
     author=__author__,
     author_email=__author_email__,
-    url='https://github.com/pysimplesoap/pysimplesoap',
+    url='https://github.com/vcancy/pysimplesoap',
     packages=['pysimplesoap'],
     license=__license__,
     # console=['client.py'],

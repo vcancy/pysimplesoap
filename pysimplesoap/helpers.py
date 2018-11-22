@@ -34,13 +34,15 @@ except ImportError:
 
 from . import __author__, __copyright__, __license__, __version__
 
-
+REPLACE_URL = []
 log = logging.getLogger(__name__)
 
 
 def fetch(url, http, cache=False, force_download=False, wsdl_basedir='', headers={}):
     """Download a document from a URL, save it locally if cache enabled"""
-
+    if REPLACE_URL and len(REPLACE_URL)==2:
+        url = url.replace(REPLACE_URL[0], REPLACE_URL[1])
+        log.debug('Replace url from[%s] to[%s]' % (REPLACE_URL[0], REPLACE_URL[1]))
     # check / append a valid schema if not given:
     url_scheme, netloc, path, query, fragment = urlsplit(url)
     if not url_scheme in ('http', 'https', 'file'):
